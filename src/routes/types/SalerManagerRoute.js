@@ -2,6 +2,11 @@ import React from "react";
 import { Route, Redirect, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { compose } from "redux";
+import {
+  SALER_MANAGER_ROLE,
+  ROOT_PATH,
+  SALER_ROLE
+} from "../../utils/constants";
 
 const SalerManagerRoute = ({
   component: Component,
@@ -16,7 +21,7 @@ const SalerManagerRoute = ({
       checkUser(authenticated, roles, companyId) ? (
         <Component {...props} />
       ) : (
-        <Redirect to="/" />
+        <Redirect to={ROOT_PATH} />
       )
     }
   />
@@ -33,7 +38,8 @@ const checkUser = (authenticated, roles, companyId) => {
     return false;
   }
   const roleSalerIndex = roles.findIndex(
-    r => r.name.toString() == "salerManager"
+    r =>
+      r.name.toString() == SALER_MANAGER_ROLE || r.name.toString() == SALER_ROLE
   );
   if (roleSalerIndex < 0) {
     return false;

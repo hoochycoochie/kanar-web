@@ -18,6 +18,7 @@ import { FormattedMessage } from "react-intl";
 import CopyRight from "../common/CopyRight";
 import { signIn } from "../../store/actions/user";
 import Loading from "../../components/Loading";
+import { OPTION_PAGE_PATH } from "../../utils/constants";
 
 const useStyles = makeStyles(theme => ({
   "@global": {
@@ -74,7 +75,7 @@ const Login = props => {
         name="identifiant"
         required
         error={
-          !!errors.identifiant ||
+          (touched.identifiant && !!errors.identifiant) ||
           (error && error.path.toString() === "identifiant")
         }
         helperText={
@@ -93,7 +94,8 @@ const Login = props => {
         value={values.reference}
         name="reference"
         error={
-          !!errors.reference || (error && error.path.toString() === "reference")
+          (touched.reference && !!errors.reference) ||
+          (error && error.path.toString() === "reference")
         }
         helperText={
           touched.reference && errors.reference ? errors.reference : null
@@ -112,7 +114,8 @@ const Login = props => {
         id="password"
         autoComplete="current-password"
         error={
-          !!errors.password || (error && error.path.toString() === "password")
+          (touched.palette && !!errors.password) ||
+          (error && error.path.toString() === "password")
         }
         helperText={
           touched.password && errors.password ? errors.password : null
@@ -209,7 +212,7 @@ export default compose(
         const { login, user, history } = props;
         await login({ identifiant, reference, password });
 
-        await history.push("/options-page");
+        await history.push(OPTION_PAGE_PATH);
       } catch (error) {
         throw error;
       }

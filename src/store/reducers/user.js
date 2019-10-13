@@ -1,7 +1,9 @@
 import {
   LOGIN_USER_SUCCESS,
   LOGIN_USER_ERROR,
-  LOGIN_USER_SUBMITING
+  LOGIN_USER_SUBMITING,
+  LOGOUT_USER_SUCCESS,
+  LOGOUT_USER_ERROR
 } from "../types";
 import { USER_LOCAL_STORE } from "../../utils/constants";
 
@@ -32,6 +34,17 @@ export default function users(state = initialState, action) {
         loading: false,
         error: action.error
       };
+
+    case LOGOUT_USER_SUCCESS:
+      return {
+        authenticated: false,
+        loading: false,
+        error: action.error
+      };
+
+    case LOGOUT_USER_ERROR:
+      return state;
+
     default:
       return state;
   }

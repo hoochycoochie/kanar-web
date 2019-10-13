@@ -21,7 +21,12 @@ const languageObject = {
     unknown_company: "Unknown company reference",
     profile: "My Profile",
     choose_working_places:
-      "Choose your Sale point if you connect as worker of your company"
+      "Choose your Sale point if you connect as worker of your company",
+    choose_manager_role: "Log in as Manager",
+    sure_to_logout_question: " Are you sure to log out ?",
+    cancel: "Cancel",
+    confirm: "Continue",
+    logout: "Log out"
   },
   fr: {
     name: "Nom",
@@ -46,7 +51,13 @@ const languageObject = {
     unknown_company: "Erreur reference",
     profile: "Mon Profile",
     choose_working_places:
-      "Choisir le point de vente sur lequel vous voulez vous connecter "
+      "Choisir le point de vente sur lequel vous voulez vous connecter ",
+    choose_manager_role: "Je me connecte en tant que Manager",
+    sure_to_logout_question: "Etes vous sur(e) de vouloir vous deconnecter ?",
+    cancel: "Annuler",
+    confirm: "Confirmer",
+    logout: "Déconnexion",
+    choose_saler_role: "Je me connecte en tant propriétaire"
   }
 };
 export default languageObject;

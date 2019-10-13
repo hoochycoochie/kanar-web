@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Redirect, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { compose } from "redux";
+import { OPTION_PAGE_PATH } from "../../utils/constants";
 
 const GuestRoute = ({ component: Component, authenticated, ...rest }) => (
   <Route
@@ -10,7 +11,7 @@ const GuestRoute = ({ component: Component, authenticated, ...rest }) => (
       !authenticated ? (
         <Component {...props} />
       ) : (
-        <Redirect to="/options-page" />
+        <Redirect to={OPTION_PAGE_PATH} />
       )
     }
   />

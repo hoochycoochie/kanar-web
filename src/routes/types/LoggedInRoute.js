@@ -2,12 +2,13 @@ import React from "react";
 import { Route, Redirect, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { compose } from "redux";
+import { LOGIN_PATH } from "../../utils/constants";
 
 const LoggedInRoute = ({ component: Component, authenticated, ...rest }) => (
   <Route
     {...rest}
     render={props =>
-      authenticated ? <Component {...props} /> : <Redirect to="/" />
+      authenticated ? <Component {...props} /> : <Redirect to={LOGIN_PATH} />
     }
   />
 );

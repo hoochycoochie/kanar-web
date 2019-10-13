@@ -1,7 +1,8 @@
 import {
   SALEPOINT_SELECTED,
   SALEPOINT_CHANGE,
-  SALEPOINT_CHANGE_ERROR
+  SALEPOINT_CHANGE_ERROR,
+  LOGOUT_USER_SUCCESS
 } from "../types";
 
 const initialState = {
@@ -25,6 +26,13 @@ export default function currentSalePoint(state = initialState, action) {
         salepoint: action.payload
       };
     case SALEPOINT_CHANGE_ERROR:
+      return {
+        selected: false,
+        error: action.error,
+        salepoint: {}
+      };
+
+    case LOGOUT_USER_SUCCESS:
       return {
         selected: false,
         error: action.error,

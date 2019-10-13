@@ -21,6 +21,22 @@ import SalerWorkerRoute from "./routes/types/SalerWorkerRoute";
 import ProductListWorker from "./containers/SalerWorker/ProductListWorker";
 import SalePointListWorker from "./containers/SalerWorker/SalePointListWorker";
 import ProductOperationListWorker from "./containers/SalerWorker/ProductOperationListWorker";
+import {
+  OPTION_PAGE_PATH,
+  ROOT_PATH,
+  LOGIN_PATH,
+  SALER_MANAGER_ROOT_PATH,
+  SALER_MANAGER_ORDERS_PATH,
+  SALER_MANAGER_TEAM_PATH,
+  SALER_MANAGER_CATEGORIES_PATH,
+  SALER_MANAGER_PRODUCTS_PATH,
+  SALER_MANAGER_OPERATIONS_PATH,
+  SALER_MANAGER_PROFILE_PATH,
+  SALER_WORKER_ROOT_PATH,
+  SALER_WORKER_SALEPOINTS_PATH,
+  SALER_WORKER_OPERATIONS_PATH,
+  SALER_MANAGER_SALEPOINTS_PATH
+} from "./utils/constants";
 
 function App(props) {
   return (
@@ -30,52 +46,58 @@ function App(props) {
         messages={languageObject[props.locale]}
       >
         <Switch>
-          <GuestRoute path="/" component={Blog} exact />
-          <GuestRoute path="/login" component={SignIn} />
+          <GuestRoute path={ROOT_PATH} component={Blog} exact />
+          <GuestRoute path={LOGIN_PATH} component={SignIn} />
 
           <SalerManagerRoute
-            path="/saler-manager"
+            path={SALER_MANAGER_ROOT_PATH}
             component={Dashboard}
             exact
           />
-          <SalerManagerRoute path="/saler-manager/orders" component={Orders} />
-          <SalerManagerRoute path="/saler-manager/teams" component={TeamList} />
           <SalerManagerRoute
-            path="/saler-manager/categories"
+            path={SALER_MANAGER_ORDERS_PATH}
+            component={Orders}
+          />
+          <SalerManagerRoute
+            path={SALER_MANAGER_TEAM_PATH}
+            component={TeamList}
+          />
+          <SalerManagerRoute
+            path={SALER_MANAGER_CATEGORIES_PATH}
             component={CategoryList}
           />
           <SalerManagerRoute
-            path="/saler-manager/products"
+            path={SALER_MANAGER_PRODUCTS_PATH}
             component={ProductList}
           />
           <SalerManagerRoute
-            path="/saler-manager/salepoints"
+            path={SALER_MANAGER_SALEPOINTS_PATH}
             component={SalePointList}
           />
           <SalerManagerRoute
-            path="/saler-manager/operations"
+            path={SALER_MANAGER_OPERATIONS_PATH}
             component={ProductOperationList}
           />
           <SalerManagerRoute
-            path="/saler-manager/profile"
+            path={SALER_MANAGER_PROFILE_PATH}
             component={ProfileSaleManager}
           />
 
           <SalerWorkerRoute
-            path="/saler-worker"
+            path={SALER_WORKER_ROOT_PATH}
             component={ProductListWorker}
           />
 
           <SalerWorkerRoute
-            path="/saler-worker/salepoints"
+            path={SALER_WORKER_SALEPOINTS_PATH}
             component={SalePointListWorker}
           />
 
           <SalerWorkerRoute
-            path="/saler-worker/operations"
+            path={SALER_WORKER_OPERATIONS_PATH}
             component={ProductOperationListWorker}
           />
-          <LoggedInRoute path="/options-page" component={OptionsScreen} />
+          <LoggedInRoute path={OPTION_PAGE_PATH} component={OptionsScreen} />
         </Switch>
       </IntlProvider>
     </BrowserRouter>

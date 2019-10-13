@@ -7,10 +7,15 @@ import { NavLink } from "react-router-dom";
 import { FormattedMessage } from "react-intl";
 import MenuItem from "@material-ui/core/MenuItem";
 import { mainColor } from "../../utils/colors";
+import {
+  SALER_WORKER_ROOT_PATH,
+  SALER_WORKER_SALEPOINTS_PATH,
+  SALER_WORKER_OPERATIONS_PATH
+} from "../../utils/constants";
 
-const products = "/saler-worker";
-const salepoints = "/saler-worker/salepoints";
-const operations = "/saler-worker/operations";
+const products = SALER_WORKER_ROOT_PATH;
+const salepoints = SALER_WORKER_SALEPOINTS_PATH;
+const operations = SALER_WORKER_OPERATIONS_PATH;
 const activeStyle = { background: mainColor, color: "white" };
 
 const SalerWorkerLeftNavbar = ({ props }) => {

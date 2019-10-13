@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -12,12 +12,16 @@ import IconButton from "@material-ui/core/IconButton";
 import Badge from "@material-ui/core/Badge";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import NotificationsIcon from "@material-ui/icons/Notifications";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { withRouter } from "react-router-dom";
 import { FormattedMessage } from "react-intl";
 import SalerManagerLeftNavbar from "../../SalerManager/SalerManagerLeftNavbar";
 import SalerWorkerLeftNavbar from "../../SalerWorker/SalerWorkerLeftNavbar";
 import { mainColor } from "../../../utils/colors";
+import Modal from "../../../components/Modal";
+import { signOut } from "../../../store/actions/user";
+import { connect } from "react-redux";
+import { compose } from "redux";
 
 const drawerWidth = 240;
 
@@ -103,7 +107,8 @@ const useStyles = makeStyles(theme => ({
 
 function Dashboard(props) {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = useState(true);
+  const [logOutModalOpen, setLogOutModalOpen] = useState(false);
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -140,10 +145,14 @@ function Dashboard(props) {
           >
             <FormattedMessage id="dashboard" />
           </Typography>
-          <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge>
+          <IconButton
+            color="inherit"
+            onClick={async e => {
+              e.preventDefault();
+              await setLogOutModalOpen(true);
+            }}
+          >
+            <ExitToAppIcon />
           </IconButton>
         </Toolbar>
       </AppBar>
@@ -174,9 +183,32 @@ function Dashboard(props) {
 
         <Divider />
       </Drawer>
-      {props.children}
+      <div style={{ marginTop: 90, marginLeft: 25 }}>{props.children}</div>
+      <Modal
+        title="logout"
+        content="sure_to_logout_question"
+        confirm={async () => {
+          await props.logout();
+          await setLogOutModalOpen(false);
+        }}
+        open={logOutModalOpen}
+        handleClose={async () => {
+          await setLogOutModalOpen(false);
+        }}
+      />
     </div>
   );
 }
 
-export default withRouter(Dashboard);
+const mapDispatchToProps = dispatch => {
+  return {
+    logout: () => dispatch(signOut())
+  };
+};
+
+export default compose(
+  connect(
+    null,
+    mapDispatchToProps
+  )
+)(withRouter(Dashboard));
