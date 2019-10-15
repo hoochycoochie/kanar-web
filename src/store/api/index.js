@@ -14,7 +14,29 @@ export default {
         );
         return user;
       } catch (error) {
-        console.log("error api", error);
+        throw error;
+      }
+    }
+  },
+
+  products: {
+    getProductBySalepoint: async data => {
+      try {
+        const { salepointId, companyId, name, skip, take } = data;
+        let path = `${url}/products/salepoint/${salepointId}/${companyId}?`;
+
+        if (name && name.trim().length > 0) {
+          path += `&name=${name}`;
+        }
+        if (skip) {
+          path += `&skip=${parseInt(skip)}`;
+        }
+        if (take) {
+          path += `&take=${parseInt(take)}`;
+        }
+        const products = await axios.get(path, responseType);
+        return products;
+      } catch (error) {
         throw error;
       }
     }

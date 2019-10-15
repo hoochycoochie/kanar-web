@@ -26,7 +26,13 @@ const languageObject = {
     sure_to_logout_question: " Are you sure to log out ?",
     cancel: "Cancel",
     confirm: "Continue",
-    logout: "Log out"
+    logout: "Log out",
+    price: "Price(cfa)",
+    products_list: "List of products",
+    no_records_message: "No data to display",
+    filter: "Filter",
+    search:"Search",
+    of:"Of"
   },
   fr: {
     name: "Nom",
@@ -57,7 +63,14 @@ const languageObject = {
     cancel: "Annuler",
     confirm: "Confirmer",
     logout: "Déconnexion",
-    choose_saler_role: "Je me connecte en tant propriétaire"
+    choose_saler_role: "Je me connecte en tant propriétaire",
+    ref: "reference",
+    price: "Prix (cfa)",
+    products_list: "Liste des produits",
+    no_records_message: "Aucune donnée",
+    filter: "Filtrer",
+    search:"Chercher",
+    of:"Sur"
   }
 };
 export default languageObject;

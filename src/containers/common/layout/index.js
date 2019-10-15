@@ -183,7 +183,9 @@ function Dashboard(props) {
 
         <Divider />
       </Drawer>
-      <div style={{ marginTop: 90, marginLeft: 25 }}>{props.children}</div>
+      <div style={{ marginTop: 90, marginLeft: 25, width: "100%" }}>
+        {props.children}
+      </div>
       <Modal
         title="logout"
         content="sure_to_logout_question"

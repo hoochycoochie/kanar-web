@@ -4,6 +4,7 @@ import {
   SALEPOINT_CHANGE_ERROR,
   LOGOUT_USER_SUCCESS
 } from "../types";
+import { CURRENT_SALE_POINT } from "../../utils/constants";
 
 const initialState = {
   selected: false,
@@ -20,6 +21,7 @@ export default function currentSalePoint(state = initialState, action) {
       };
 
     case SALEPOINT_CHANGE:
+      localStorage.setItem(CURRENT_SALE_POINT,JSON.stringify(action.payload))
       return {
         selected: true,
         loading: false,

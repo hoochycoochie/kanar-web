@@ -84,6 +84,7 @@ function App(props) {
           />
 
           <SalerWorkerRoute
+            exact
             path={SALER_WORKER_ROOT_PATH}
             component={ProductListWorker}
           />
