@@ -1,14 +1,19 @@
 import { combineReducers } from "redux";
 import user from "./user";
 import locale from "./locale";
-import salepoint from "./salepoint";
+import { currentSalePoint, salepoints } from "./salepoint";
 import products from "./product";
+import categories from "./category";
+import members from "./member";
 
 const rootReducer = combineReducers({
   user,
   locale,
-  salepoint,
-  products
+  salepoint: currentSalePoint,
+  salepoints,
+  products,
+  categories,
+  members
 });
 
 export default rootReducer;

@@ -3,7 +3,7 @@ import Layout from "../common/layout";
 import { compose } from "redux";
 import { connect } from "react-redux";
 import { FormattedMessage } from "react-intl";
-import { fetchProducts } from "../../store/actions/product";
+import { fetchProductBySalePoint } from "../../store/actions/product";
 import MaterialTable from "material-table";
 
 class ProductListWorker extends Component {
@@ -51,13 +51,16 @@ class ProductListWorker extends Component {
     return (
       <Layout module="salerWorker">
         <MaterialTable
+        
           totalCount={parseInt(total)}
           page={currentPage - 1}
           rowsPerPage={parseInt(take)}
           onSearchChange={async search => {
-            await this.setState({ search });
-            await this.setState({ currentPage: 1 });
-            await this.props.fetchProducts({ name: search });
+            if (search.trim().length > 0) {
+              await this.setState({ search });
+              await this.setState({ currentPage: 1 });
+              await this.props.fetchProducts({ name: search });
+            }
           }}
           onChangeRowsPerPage={async page => {
             await this.setState({ currentPage: 1 });
@@ -65,12 +68,9 @@ class ProductListWorker extends Component {
           }}
           onChangePage={async page => {
             let comingPage = parseInt(page) + 1;
-            console.log("comingPage", comingPage);
+
             let skipper = (parseInt(take) - 1) * comingPage;
 
-            // if (comingPage > currentPage) {
-            //   skipper = (parseInt(take) - 1) * comingPage;
-            // }
             await this.setState({ currentPage: comingPage });
 
             await this.props.fetchProducts({
@@ -117,7 +117,7 @@ class ProductListWorker extends Component {
 
 const mapDistpathToProps = dispatch => {
   return {
-    fetchProducts: query => dispatch(fetchProducts(query))
+    fetchProducts: query => dispatch(fetchProductBySalePoint(query))
   };
 };
 

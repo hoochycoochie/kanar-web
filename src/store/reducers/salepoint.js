@@ -2,7 +2,9 @@ import {
   SALEPOINT_SELECTED,
   SALEPOINT_CHANGE,
   SALEPOINT_CHANGE_ERROR,
-  LOGOUT_USER_SUCCESS
+  LOGOUT_USER_SUCCESS,
+  LOADING_SALEPOINTS_SUCCESS,
+  LOADING_SALEPOINTS_ERROR
 } from "../types";
 import { CURRENT_SALE_POINT } from "../../utils/constants";
 
@@ -12,7 +14,7 @@ const initialState = {
   salepoint: null
 };
 
-export default function currentSalePoint(state = initialState, action) {
+export const currentSalePoint = (state = initialState, action) => {
   switch (action.type) {
     case SALEPOINT_SELECTED:
       return {
@@ -21,7 +23,7 @@ export default function currentSalePoint(state = initialState, action) {
       };
 
     case SALEPOINT_CHANGE:
-      localStorage.setItem(CURRENT_SALE_POINT,JSON.stringify(action.payload))
+      localStorage.setItem(CURRENT_SALE_POINT, JSON.stringify(action.payload));
       return {
         selected: true,
         loading: false,
@@ -43,4 +45,31 @@ export default function currentSalePoint(state = initialState, action) {
     default:
       return state;
   }
-}
+};
+
+const initialState2 = {
+  loading: true,
+  error: null,
+  salepoints: []
+};
+
+export const salepoints = (state = initialState2, action) => {
+  switch (action.type) {
+    case LOADING_SALEPOINTS_SUCCESS:
+      return {
+        loading: false,
+        error: null,
+        salepoints: action.payload
+      };
+
+    case LOADING_SALEPOINTS_ERROR:
+      return {
+        loading: false,
+        error: action.error,
+        salepoints: []
+      };
+
+    default:
+      return state;
+  }
+};

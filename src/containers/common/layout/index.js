@@ -19,6 +19,7 @@ import SalerManagerLeftNavbar from "../../SalerManager/SalerManagerLeftNavbar";
 import SalerWorkerLeftNavbar from "../../SalerWorker/SalerWorkerLeftNavbar";
 import { mainColor } from "../../../utils/colors";
 import Modal from "../../../components/Modal";
+
 import { signOut } from "../../../store/actions/user";
 import { connect } from "react-redux";
 import { compose } from "redux";
@@ -186,6 +187,10 @@ function Dashboard(props) {
       <div style={{ marginTop: 90, marginLeft: 25, width: "100%" }}>
         {props.children}
       </div>
+
+      {/* <Scrollbars style={{  height: 800}}>
+      {props.children}
+      </Scrollbars> */}
       <Modal
         title="logout"
         content="sure_to_logout_question"

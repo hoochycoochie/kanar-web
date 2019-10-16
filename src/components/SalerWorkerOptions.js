@@ -29,9 +29,9 @@ const SalerWorkerOptions = ({ user, select }) => {
       </Typography>
 
       <MenuList>
-        {user.salepoints.map(s => (
+        {user.salepoints.map((s,i) => (
           <MenuItem
-            key={s.id}
+            key={i}
             button
             onClick={async e => {
               await select(s);

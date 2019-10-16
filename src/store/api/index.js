@@ -2,8 +2,26 @@ import axios from "axios";
 
 const url = "http://localhost:3001/api";
 const responseType = { responseType: "json" };
-
+const contentType = {
+  headers: {
+    "Content-Type": "application/json"
+  }
+};
 export default {
+  salepoints: {
+    getSalepointsByCompany: async body => {
+      try {
+        const salepoints = await axios.post(
+          `${url}/salepoints`,
+          body,
+          contentType
+        );
+        return salepoints;
+      } catch (error) {
+        throw error;
+      }
+    }
+  },
   user: {
     login: async credentials => {
       try {
@@ -16,14 +34,31 @@ export default {
       } catch (error) {
         throw error;
       }
+    },
+    getUsersByCompany: async body => {
+      try {
+        const users = await axios.post(`${url}/members`, body, contentType);
+        return users;
+      } catch (error) {
+        throw error;
+      }
     }
   },
-
+  categories: {
+    getCategoriesByCompany: async body => {
+      try {
+        const cats = await axios.post(`${url}/categories`, body, contentType);
+        return cats;
+      } catch (error) {
+        throw error;
+      }
+    }
+  },
   products: {
     getProductBySalepoint: async data => {
       try {
-        const { salepointId, companyId, name, skip, take } = data;
-        let path = `${url}/products/salepoint/${salepointId}/${companyId}?`;
+        const { company_id, salepoint_id, name, skip, take } = data;
+        let path = `${url}/products/salepoint/${salepoint_id}/${company_id}?`;
 
         if (name && name.trim().length > 0) {
           path += `&name=${name}`;
@@ -33,6 +68,35 @@ export default {
         }
         if (take) {
           path += `&take=${parseInt(take)}`;
+        }
+        const products = await axios.get(path, responseType);
+        return products;
+      } catch (error) {
+        throw error;
+      }
+    },
+
+    getProducts: async data => {
+      try {
+        const { company_id, salepoint_id, name, skip, take } = data;
+        let path = `${url}/products?`;
+
+        if (name && name.trim().length > 0) {
+          path += `&name=${name}`;
+        }
+        if (skip) {
+          path += `&skip=${parseInt(skip)}`;
+        }
+        if (take) {
+          path += `&take=${parseInt(take)}`;
+        }
+
+        if (company_id) {
+          path += `&company_id=${company_id}`;
+        }
+
+        if (salepoint_id) {
+          path += `&salepoint_id=${salepoint_id}`;
         }
         const products = await axios.get(path, responseType);
         return products;

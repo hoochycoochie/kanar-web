@@ -31,8 +31,16 @@ const languageObject = {
     products_list: "List of products",
     no_records_message: "No data to display",
     filter: "Filter",
-    search:"Search",
-    of:"Of"
+    search: "Search",
+    of: "Of",
+    type: "Type",
+    add_product: "Add Product",
+    edit_product: "Edit Product",
+    delete_product: "Remove Product",
+    add_category: "Add Type",
+    edit_category: "Edit Type",
+    delete_category: "Remove Type",
+    categories_list: "Types of products"
   },
   fr: {
     name: "Nom",
@@ -69,8 +77,17 @@ const languageObject = {
     products_list: "Liste des produits",
     no_records_message: "Aucune donnée",
     filter: "Filtrer",
-    search:"Chercher",
-    of:"Sur"
+    search: "Chercher",
+    of: "Sur",
+    type: "Type",
+    add_product: "Ajouter nouveau produit",
+    edit_product: "Modifier produit",
+    delete_product: "Supprimer le produit",
+
+    add_category: "Ajouter nouveau type",
+    edit_category: "Modifier type",
+    delete_category: "Supprimer le type",
+    categories_list: "Liste des types de produits"
   }
 };
 export default languageObject;
