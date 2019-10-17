@@ -76,29 +76,9 @@ export default {
       }
     },
 
-    getProducts: async data => {
+    getProducts: async body => {
       try {
-        const { company_id, salepoint_id, name, skip, take } = data;
-        let path = `${url}/products?`;
-
-        if (name && name.trim().length > 0) {
-          path += `&name=${name}`;
-        }
-        if (skip) {
-          path += `&skip=${parseInt(skip)}`;
-        }
-        if (take) {
-          path += `&take=${parseInt(take)}`;
-        }
-
-        if (company_id) {
-          path += `&company_id=${company_id}`;
-        }
-
-        if (salepoint_id) {
-          path += `&salepoint_id=${salepoint_id}`;
-        }
-        const products = await axios.get(path, responseType);
+        const products = await axios.post(`${url}/products`, body, contentType);
         return products;
       } catch (error) {
         throw error;
